@@ -53,11 +53,11 @@ export default function DemoOverviewPage(): JSX.Element {
           Ett løp fra faktura til innkrevd.
         </h1>
         <p className="max-w-2xl text-sm text-ink-600">
-          Erstatt Svea-floken med ett sømløst, integrert løp — fra faktura til
-          innkrevd, bygget for telekom. Solvva spenner over hele verdikjeden og
-          plugger inn i systemene{" "}
-          <span className="font-medium text-ink-900">{CREDITOR_NAME}</span>{" "}
-          allerede bruker.
+          Slik ser det ut for{" "}
+          <span className="font-medium text-ink-900">{CREDITOR_NAME}</span> i
+          Solvva: fakturering og innkreving samlet på ett sted, koblet på
+          systemene dere allerede bruker. Du følger hele løpet — fra faktura
+          sendt til pengene er inne.
         </p>
       </header>
 
