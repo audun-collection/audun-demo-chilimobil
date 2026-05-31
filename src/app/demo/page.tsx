@@ -106,6 +106,7 @@ const VALUE_CHAIN: ReadonlyArray<{
   icon: typeof FileText;
   tone: ChainTone;
   href?: string;
+  cta?: string;
 }> = [
   { key: "crm", label: "Abonnement / CRM", icon: Users, tone: "system" },
   {
@@ -114,11 +115,19 @@ const VALUE_CHAIN: ReadonlyArray<{
     icon: FileText,
     tone: "core",
     href: "/demo/fakturering",
+    cta: "Se kjøring →",
   },
   { key: "distribusjon", label: "Distribusjon", icon: Send, tone: "core" },
   { key: "betaling", label: "Betaling & avstemming", icon: Wallet, tone: "core" },
   { key: "oppfolging", label: "Oppfølging", icon: MessageSquare, tone: "soft" },
-  { key: "inkasso", label: "Inkasso", icon: Scale, tone: "late" },
+  {
+    key: "inkasso",
+    label: "Inkasso",
+    icon: Scale,
+    tone: "late",
+    href: "/demo/saker",
+    cta: "Se sakene →",
+  },
   { key: "lost", label: "Løst", icon: CircleCheck, tone: "done" },
 ];
 
@@ -177,9 +186,9 @@ function ValueChainPanel(): JSX.Element {
                 <span className="text-[11.5px] font-medium leading-tight text-ink-800">
                   {node.label}
                 </span>
-                {node.href ? (
+                {node.cta ? (
                   <span className="font-mono text-[9px] uppercase tracking-wider text-accent-700">
-                    Se kjøring →
+                    {node.cta}
                   </span>
                 ) : null}
               </>
