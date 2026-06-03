@@ -56,7 +56,6 @@ export default function DemoDebtorsPage(): JSX.Element {
         <p className="eyebrow">Skyldnere</p>
         <h1
           className="font-serif text-3xl font-light tracking-tight text-ink-900"
-          style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
         >
           {debtors.length} unike skyldnere
         </h1>

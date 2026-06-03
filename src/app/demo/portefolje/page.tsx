@@ -61,7 +61,6 @@ export default function DemoPortfolioPage(): JSX.Element {
         <p className="eyebrow">Portefølje</p>
         <h1
           className="font-serif text-3xl font-light tracking-tight text-ink-900"
-          style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
         >
           {greetingFor(new Date())}
         </h1>
@@ -173,7 +172,6 @@ function CashImpactPanel({ cash }: { cash: DemoCashMetrics }): JSX.Element {
         <div className="flex items-baseline justify-between">
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Likviditetseffekt
           </h2>
@@ -227,7 +225,6 @@ function CashTile({
       </div>
       <p
         className="font-serif text-[26px] font-light leading-none tracking-tight text-ink-900"
-        style={{ fontVariationSettings: "'opsz' 48, 'SOFT' 80" }}
       >
         {primary}
       </p>
@@ -272,12 +269,11 @@ function LifecycleRibbon(): JSX.Element {
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Pengene inn — fra faktura til løst
           </h2>
           <p className="font-mono text-[11.5px] text-ink-500">
-            Solvva eier hele oppfølgingen av kravet
+            Audun eier hele oppfølgingen av kravet
           </p>
         </div>
         <ol className="flex flex-wrap items-center gap-y-3">
@@ -304,7 +300,7 @@ function LifecycleRibbon(): JSX.Element {
         </ol>
         <p className="max-w-3xl text-[11.5px] leading-snug text-ink-500">
           Jo tidligere i løpet en sak løses, jo billigere for dere og bedre for
-          kunden — Solvva jobber hardest i de tidlige, vennlige stegene, før
+          kunden — Audun jobber hardest i de tidlige, vennlige stegene, før
           inkasso og dyre salærer. Hver krone inn raskere er en krone mindre
           bundet i factoring.
         </p>
@@ -346,7 +342,6 @@ function Tile({
         </div>
         <p
           className="font-serif text-[28px] font-light leading-none tracking-tight text-ink-900"
-          style={{ fontVariationSettings: "'opsz' 48, 'SOFT' 80" }}
         >
           {primary}
         </p>
@@ -393,7 +388,6 @@ function AgingPanel({
         <div className="flex items-baseline justify-between">
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Aldersfordeling og eksponering
           </h2>
@@ -472,7 +466,6 @@ function PipelinePanel({ segments }: { segments: StageSegment[] }): JSX.Element 
         <div className="flex items-baseline justify-between">
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Fordeling etter status
           </h2>
@@ -524,7 +517,6 @@ function AttentionPanel({ items }: { items: CaseListItem[] }): JSX.Element {
         <div className="flex items-baseline justify-between">
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Krever oppmerksomhet
           </h2>
@@ -576,7 +568,6 @@ function RecentClaimsPanel({ items }: { items: CaseListItem[] }): JSX.Element {
         <div className="flex items-baseline justify-between">
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Siste aktivitet
           </h2>

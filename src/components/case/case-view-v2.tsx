@@ -249,7 +249,6 @@ function ClaimHeader({ detail }: { detail: CaseDetail }): JSX.Element {
         </p>
         <h1
           className="font-serif text-3xl font-light tracking-tight text-ink-900"
-          style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
         >
           {c.invoice_reference ?? "(no invoice reference)"}
         </h1>
@@ -310,14 +309,13 @@ function StopCaseButton(): JSX.Element {
           <div className="space-y-1">
             <h3
               className="font-serif text-lg font-medium tracking-tight text-ink-900"
-              style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
             >
               {tt("Stop this case?", "Stoppe denne saken?")}
             </h3>
             <p className="text-[12.5px] leading-snug text-ink-600">
               {tt(
-                "Solvva will halt all reminders and collection activity for this Claim. You can re-activate it later.",
-                "Solvva stopper alle påminnelser og all inndriving for dette kravet. Du kan aktivere det igjen senere.",
+                "Audun will halt all reminders and collection activity for this Claim. You can re-activate it later.",
+                "Audun stopper alle påminnelser og all inndriving for dette kravet. Du kan aktivere det igjen senere.",
               )}
             </p>
           </div>
@@ -360,7 +358,7 @@ function StopCaseButton(): JSX.Element {
 // ─── Legal-escalation review card (state=failed) ────────────────────
 
 /**
- * Renders when Solvva couldn't deliver the SMS reminder (bounced
+ * Renders when Audun couldn't deliver the SMS reminder (bounced
  * handset, opt-out without re-contact path, unreachable number). The
  * agent has done what it can; the creditor now decides whether to
  * push the claim to the legal track (Forliksrådet) or withdraw it.
@@ -376,8 +374,8 @@ function LegalEscalationReviewCard(): JSX.Element {
     const message =
       decision === "escalate"
         ? tt(
-            "Sent to legal collection. Solvva files with Forliksrådet and steps back from automated reminders.",
-            "Sendt til rettslig inkasso. Solvva sender saken til Forliksrådet og trer tilbake fra automatiske påminnelser.",
+            "Sent to legal collection. Audun files with Forliksrådet and steps back from automated reminders.",
+            "Sendt til rettslig inkasso. Audun sender saken til Forliksrådet og trer tilbake fra automatiske påminnelser.",
           )
         : tt(
             "Claim withdrawn and marked Resolved.",
@@ -408,17 +406,16 @@ function LegalEscalationReviewCard(): JSX.Element {
           </p>
           <h3
             className="font-serif text-base font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             {tt(
-              "Solvva couldn't reach the debtor.",
-              "Solvva nådde ikke skyldneren.",
+              "Audun couldn't reach the debtor.",
+              "Audun nådde ikke skyldneren.",
             )}
           </h3>
           <p className="text-[12.5px] leading-snug text-ink-700">
             {tt(
               "SMS delivery failed and no inbound reply has come in. The agent has stopped reminders for this Claim. You can push it to legal collection (Forliksrådet) or withdraw it.",
-              "SMS-leveringen feilet og ingen svar er mottatt. Solvva har stoppet påminnelser for dette kravet. Du kan sende det videre til rettslig inkasso (Forliksrådet), eller frafalle kravet.",
+              "SMS-leveringen feilet og ingen svar er mottatt. Audun har stoppet påminnelser for dette kravet. Du kan sende det videre til rettslig inkasso (Forliksrådet), eller frafalle kravet.",
             )}
           </p>
         </div>
@@ -438,7 +435,7 @@ function LegalEscalationReviewCard(): JSX.Element {
 // ─── Forliksrådet decision card (state=pending_legal_approval) ──────
 
 /**
- * Solvva has worked the Claim through purring, inkassovarsel, and
+ * Audun has worked the Claim through purring, inkassovarsel, and
  * betalingsoppfordring without resolution. The next step in Norwegian
  * debt collection is Forliksrådet (the conciliation board) — but
  * filing a Forliksrådet claim costs money, so the creditor decides
@@ -465,12 +462,12 @@ function ForliksradetReviewCard({ detail }: { detail: CaseDetail }): JSX.Element
     const message =
       decision === "forliksradet"
         ? tt(
-            "Sent to Forliksrådet. Solvva files the claim and keeps you posted on the ruling.",
-            "Sendt til Forliksrådet. Solvva sender inn kravet og holder deg oppdatert om utfallet.",
+            "Sent to Forliksrådet. Audun files the claim and keeps you posted on the ruling.",
+            "Sendt til Forliksrådet. Audun sender inn kravet og holder deg oppdatert om utfallet.",
           )
         : tt(
-            "Placed under long-term monitoring. Solvva watches passively for payment-ability signals.",
-            "Plassert under langtidsovervåkning. Solvva overvåker passivt etter signal om betalingsevne.",
+            "Placed under long-term monitoring. Audun watches passively for payment-ability signals.",
+            "Plassert under langtidsovervåkning. Audun overvåker passivt etter signal om betalingsevne.",
           );
     return (
       <section className="rounded-lg border border-sage-300 bg-sage-50/60 p-5">
@@ -497,7 +494,6 @@ function ForliksradetReviewCard({ detail }: { detail: CaseDetail }): JSX.Element
           </p>
           <h3
             className="font-serif text-base font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             {tt(
               "Send this Claim to Forliksrådet?",
@@ -506,8 +502,8 @@ function ForliksradetReviewCard({ detail }: { detail: CaseDetail }): JSX.Element
           </h3>
           <p className="text-[12.5px] leading-snug text-ink-700">
             {tt(
-              "Solvva has exhausted the reminder ladder. Filing with Forliksrådet starts the legal track and incurs a court fee. Alternatively, place the Claim under long-term monitoring — Solvva keeps watching for payment-ability signals at no additional cost.",
-              "Solvva har sendt alle påminnelsene i inkassoløpet. Forliksrådet starter rettslig inkasso og medfører rettsgebyr. Alternativt kan kravet plasseres under langtidsovervåkning — Solvva fortsetter å overvåke etter signal om betalingsevne, uten ekstra kostnad.",
+              "Audun has exhausted the reminder ladder. Filing with Forliksrådet starts the legal track and incurs a court fee. Alternatively, place the Claim under long-term monitoring — Audun keeps watching for payment-ability signals at no additional cost.",
+              "Audun har sendt alle påminnelsene i inkassoløpet. Forliksrådet starter rettslig inkasso og medfører rettsgebyr. Alternativt kan kravet plasseres under langtidsovervåkning — Audun fortsetter å overvåke etter signal om betalingsevne, uten ekstra kostnad.",
             )}
           </p>
 
@@ -592,7 +588,6 @@ function VulnerableReviewCard(): JSX.Element {
           </p>
           <h3
             className="font-serif text-base font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             {tt(
               "Automation and fee escalation are paused",
@@ -601,8 +596,8 @@ function VulnerableReviewCard(): JSX.Element {
           </h3>
           <p className="text-[12.5px] leading-snug text-ink-700">
             {tt(
-              "Solvva detected a vulnerability signal and put the Claim on hold. It has been routed to a case manager for personal follow-up, and no extra costs accrue while it is under human review.",
-              "Solvva fanget et sårbarhetssignal og satte saken på vent. Den er rutet til en saksbehandler for personlig oppfølging, og det påløper ingen ekstra kostnader mens saken er under menneskelig gjennomgang.",
+              "Audun detected a vulnerability signal and put the Claim on hold. It has been routed to a case manager for personal follow-up, and no extra costs accrue while it is under human review.",
+              "Audun fanget et sårbarhetssignal og satte saken på vent. Den er rutet til en saksbehandler for personlig oppfølging, og det påløper ingen ekstra kostnader mens saken er under menneskelig gjennomgang.",
             )}
           </p>
         </div>
@@ -680,7 +675,7 @@ const NEEDS_REVIEW_FIELDS: ReadonlyArray<{
  * and triggers a parent reload so the badge, conversation thread,
  * and auto-draft surface refresh in place.
  *
- * Per peter@solvva.no 2026-05-26 feedback: "when opening and seeing a
+ * Per peter@audun.no 2026-05-26 feedback: "when opening and seeing a
  * needs review case I should as an operator and creditor quickly see
  * what is missing and be able to fill out the missing information".
  */
@@ -780,7 +775,6 @@ function NeedsReviewCard({
           </p>
           <h2
             className="mt-1 font-serif text-base font-medium tracking-tight text-amber-950"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Fill in the missing fields to start drafting
           </h2>
@@ -1044,7 +1038,6 @@ export function DebtorIdentityCard({
       </p>
       <h2
         className="mt-1 font-serif text-lg font-medium tracking-tight text-ink-900"
-        style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
       >
         {c.debtor_name ?? "—"}
       </h2>
@@ -1101,8 +1094,8 @@ function statusDescription(state: string): string {
     case "approved":
     case "sent":
       return tt(
-        "Solvva is handling this Claim automatically. We'll let you know if you need to step in.",
-        "Solvva håndterer dette kravet automatisk. Vi gir beskjed hvis du må gripe inn.",
+        "Audun is handling this Claim automatically. We'll let you know if you need to step in.",
+        "Audun håndterer dette kravet automatisk. Vi gir beskjed hvis du må gripe inn.",
       );
     case "needs_review":
       return tt(
@@ -1111,11 +1104,11 @@ function statusDescription(state: string): string {
       );
     case "paused":
       return tt(
-        "Paused — Solvva is waiting on a signal before continuing.",
-        "Pauset — Solvva venter på et signal før den fortsetter.",
+        "Paused — Audun is waiting on a signal before continuing.",
+        "Pauset — Audun venter på et signal før den fortsetter.",
       );
     case "escalated":
-      return tt("Flagged for Solvva review.", "Flagget for gjennomgang.");
+      return tt("Flagged for Audun review.", "Flagget for gjennomgang.");
     case "closed":
       return tt(
         "Closed — no further reminders will go out.",
@@ -1123,8 +1116,8 @@ function statusDescription(state: string): string {
       );
     case "failed":
       return tt(
-        "Solvva couldn't reach the debtor. Review for legal escalation or withdraw.",
-        "Solvva nådde ikke skyldneren. Vurder rettslig inkasso eller frafall kravet.",
+        "Audun couldn't reach the debtor. Review for legal escalation or withdraw.",
+        "Audun nådde ikke skyldneren. Vurder rettslig inkasso eller frafall kravet.",
       );
     case "pending_legal_approval":
       return tt(
@@ -1138,8 +1131,8 @@ function statusDescription(state: string): string {
       );
     case "long_term_monitoring":
       return tt(
-        "Placed under long-term monitoring — Solvva watches passively for payment-ability signals.",
-        "Plassert under langtidsovervåkning — Solvva overvåker passivt etter signal om betalingsevne.",
+        "Placed under long-term monitoring — Audun watches passively for payment-ability signals.",
+        "Plassert under langtidsovervåkning — Audun overvåker passivt etter signal om betalingsevne.",
       );
     default:
       return "";
@@ -1222,7 +1215,6 @@ export function BalanceCard({ detail }: { detail: CaseDetail }): JSX.Element {
         </p>
         <p
           className="mt-1 font-serif text-2xl font-light tracking-tight text-ink-900"
-          style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
         >
           {formatNok(detail.case.amount)}
         </p>
@@ -1246,7 +1238,6 @@ export function BalanceCard({ detail }: { detail: CaseDetail }): JSX.Element {
       </p>
       <p
         className="mt-1 font-serif text-2xl font-light tracking-tight text-ink-900"
-        style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
       >
         {formatMinorAsKr(ledger.outstanding_minor)}
       </p>
@@ -1303,7 +1294,6 @@ export function DueDatesCard({ detail }: { detail: CaseDetail }): JSX.Element {
       </p>
       <p
         className="mt-1.5 font-serif text-base font-medium tracking-tight text-ink-900"
-        style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
       >
         {formatDateNo(dueDate)}
       </p>
@@ -1713,7 +1703,6 @@ export function LatestInvoiceCard({
 
       <p
         className="mt-2 font-serif text-2xl font-light tracking-tight text-ink-900"
-        style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
       >
         {formatMinorAsKr(total)}
       </p>
@@ -1854,8 +1843,8 @@ export function CollapsibleConversation(props: {
       : draftDetail?.draft.state === "pending"
         ? isCreditor
           ? tt(
-              "Drafted reminder — awaiting Solvva approval",
-              "Utkast klart — venter på godkjenning fra Solvva",
+              "Drafted reminder — awaiting Audun approval",
+              "Utkast klart — venter på godkjenning fra Audun",
             )
           : tt(
               "Drafted reminder — awaiting approval",

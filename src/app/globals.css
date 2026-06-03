@@ -1,5 +1,6 @@
-/* Solvva — cool fjord visual system */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+/* Audun — cool fjord visual system. Fonts (EB Garamond / Inter /
+   JetBrains Mono) are loaded via next/font in src/app/layout.tsx and
+   exposed as CSS variables. */
 
 @tailwind base;
 @tailwind components;
@@ -30,11 +31,15 @@
        something to refract instead of a flat colour. Fixed
        attachment so the gradient stays viewport-anchored on long
        scrolling pages instead of stretching with content. */
+    /* Layered fjord wallpaper: a soft top-anchored radial bloom over a
+       diagonal wash — echoes getaudun.com's muted "mountains in mist"
+       atmosphere. Kept very light so cards/pills stay legible. */
     background:
+      radial-gradient(120% 80% at 50% -10%, rgba(255, 255, 255, 0.75) 0%, rgba(240, 245, 249, 0) 55%),
       linear-gradient(135deg, #f0f5f9 0%, #e2ebf4 45%, #d8e2eb 100%) fixed;
     background-color: var(--app-bg);
     color: var(--app-fg);
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont,
+    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont,
       'Segoe UI', Roboto, sans-serif;
     font-size: 13.5px;
     line-height: 1.55;
@@ -44,7 +49,7 @@
   code,
   pre,
   kbd {
-    font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-family: var(--font-jetbrains-mono), ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   }
 
   ::selection {
@@ -54,31 +59,20 @@
 }
 
 @layer components {
-  /* Serif wordmark used in the header. Mirrors the reference's Fraunces
-     treatment with italic accent for the second syllable. */
+  /* Serif wordmark used in the header — EB Garamond, the getaudun.com
+     display face. Calm, navy, lightly tracked-in. */
   .wordmark {
-    font-family: 'Fraunces', ui-serif, Georgia, serif;
-    font-weight: 380;
-    font-size: 19px;
-    letter-spacing: -0.035em;
-    font-variation-settings:
-      'opsz' 48,
-      'SOFT' 80;
+    font-family: var(--font-eb-garamond), ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-size: 21px;
+    letter-spacing: -0.03em;
     color: var(--app-fg);
   }
 
-  .wordmark em {
-    font-style: italic;
-    color: var(--app-accent);
-    font-variation-settings:
-      'opsz' 48,
-      'SOFT' 100;
-  }
-
   .eyebrow {
-    font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    font-family: var(--font-jetbrains-mono), ui-monospace, 'SF Mono', Menlo, monospace;
     font-size: 10px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--app-fg-muted);
   }

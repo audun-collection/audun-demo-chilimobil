@@ -77,7 +77,7 @@ interface DummyCase {
 }
 
 // Warm, folkelig ChiliMobil-tone — "Norges mest fornøyde kunder".
-// Betaling skjer via chilimobil.no/betal (orkestrert av Solvva).
+// Betaling skjer via chilimobil.no/betal (orkestrert av Audun).
 const SMS_PURRING = (
   firstName: string,
   _ref: string,
@@ -92,12 +92,12 @@ const SMS_PURRING = (
 const SMS_INKASSO = (firstName: string, ref: string, amount: number): string =>
   `Hei ${firstName}. Faktura ${ref} på kr ${amount.toLocaleString(
     "nb-NO",
-  )} er forfalt. Dette er et inkassovarsel – betal innen 14 dager for å unngå inkassosalær: chilimobil.no/betal. Ta kontakt hvis noe er uklart. Mvh Solvva for ChiliMobil`;
+  )} er forfalt. Dette er et inkassovarsel – betal innen 14 dager for å unngå inkassosalær: chilimobil.no/betal. Ta kontakt hvis noe er uklart. Mvh Audun for ChiliMobil`;
 
 const SMS_BETALING = (firstName: string, ref: string, amount: number): string =>
   `${firstName}, dette er en betalingsoppfordring på faktura ${ref} (kr ${amount.toLocaleString(
     "nb-NO",
-  )}). Beløpet må betales nå for å unngå rettslig inkasso: chilimobil.no/betal. Mvh Solvva`;
+  )}). Beløpet må betales nå for å unngå rettslig inkasso: chilimobil.no/betal. Mvh Audun`;
 
 // All cases are owned by the same demo creditor (CHILIMOBIL AS).
 // The conversation array carries the audit events the portal detail
@@ -127,13 +127,13 @@ const CASES: DummyCase[] = [
     age_hours: 48,
     stages: [],
     conversation: [
-      { h: 9 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: { invoice_reference: "CM-2026-04812", source_format: "csv", note: "Opprettet fra ChiliMobil-faktura (Fri Data)" } },
-      { h: 8 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { to: "+4748112233", body: "Hei Emma! Liten påminnelse: mobilregningen din (Fri Data, kr 399) forfaller om to dager. Betal enkelt her: chilimobil.no/betal 🙌 Hilsen ChiliMobil" } },
+      { h: 9 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: { invoice_reference: "CM-2026-04812", source_format: "csv", note: "Opprettet fra ChiliMobil-faktura (Fri Data)" } },
+      { h: 8 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { to: "+4748112233", body: "Hei Emma! Liten påminnelse: mobilregningen din (Fri Data, kr 399) forfaller om to dager. Betal enkelt her: chilimobil.no/betal 🙌 Hilsen ChiliMobil" } },
       { h: 8 * 24 - 0.2, actor: "twilio-webhook", event_type: "sms_delivered", payload: {} },
-      { h: 3 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Hei igjen Emma 🙂 Regningen på 399 kr har gått litt over forfall – skjer den beste! Du fikser den her: chilimobil.no/betal" } },
+      { h: 3 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Hei igjen Emma 🙂 Regningen på 399 kr har gått litt over forfall – skjer den beste! Du fikser den her: chilimobil.no/betal" } },
       { h: 3 * 24 - 2, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748112233", body: "Oi, helt glemt! Fikser det nå 🙏" } },
-      { h: 3 * 24 - 2.5, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Helt supert, ingen stress! Si fra om du trenger noe. Ha en fin dag, Emma 🧡" } },
-      { h: 48, actor: "agent@solvva.ai", event_type: "case_closed", payload: { reason: "Betalt – løst uten gebyr", source: "agent" } },
+      { h: 3 * 24 - 2.5, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Helt supert, ingen stress! Si fra om du trenger noe. Ha en fin dag, Emma 🧡" } },
+      { h: 48, actor: "agent@audun.ai", event_type: "case_closed", payload: { reason: "Betalt – løst uten gebyr", source: "agent" } },
     ],
   },
 
@@ -154,16 +154,16 @@ const CASES: DummyCase[] = [
     age_hours: 96,
     stages: [],
     conversation: [
-      { h: 12 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: { note: "Opprettet fra ChiliMobil-faktura (Familie)" } },
-      { h: 7 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Jonas", "CM-2026-04845", 649, "19.05.2026", "Familie") } },
-      { h: 5 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Hei Jonas! Vi ser at regningen på 649 kr (Familie) ikke er betalt ennå. Trenger du å ordne den på en annen måte? Svar gjerne her, så finner vi en løsning sammen. – ChiliMobil" } },
+      { h: 12 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: { note: "Opprettet fra ChiliMobil-faktura (Familie)" } },
+      { h: 7 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Jonas", "CM-2026-04845", 649, "19.05.2026", "Familie") } },
+      { h: 5 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Hei Jonas! Vi ser at regningen på 649 kr (Familie) ikke er betalt ennå. Trenger du å ordne den på en annen måte? Svar gjerne her, så finner vi en løsning sammen. – ChiliMobil" } },
       { h: 5 * 24 - 3, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748112255", body: "Det har vært en tøff måned, får ikke betalt alt på en gang akkurat nå." } },
-      { h: 5 * 24 - 5, actor: "agent@solvva.ai", event_type: "draft_created", payload: { note: "AI foreslår betalingsplan: kr 325 nå + kr 324 om 14 dager", template_slug: "betalingsplan" } },
+      { h: 5 * 24 - 5, actor: "agent@audun.ai", event_type: "draft_created", payload: { note: "AI foreslår betalingsplan: kr 325 nå + kr 324 om 14 dager", template_slug: "betalingsplan" } },
       { h: 5 * 24 - 6, actor: "creditor@chilimobil", event_type: "plan_approved", payload: { note: "Betalingsplan godkjent av saksbehandler før utsending", source: "creditor_portal" } },
-      { h: 5 * 24 - 6.5, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Det skjønner vi godt, Jonas – takk for at du sier fra. Vil det hjelpe å dele beløpet i to: 325 kr nå og 324 kr om to uker? Da er du i rute og slipper gebyrer." } },
+      { h: 5 * 24 - 6.5, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Det skjønner vi godt, Jonas – takk for at du sier fra. Vil det hjelpe å dele beløpet i to: 325 kr nå og 324 kr om to uker? Da er du i rute og slipper gebyrer." } },
       { h: 5 * 24 - 20, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748112255", body: "Ja, det funker fint. Tusen takk." } },
-      { h: 5 * 24 - 21, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Så bra! Da er planen satt 👍 Første del her: chilimobil.no/betal · Vi minner deg vennlig om del to. Ta vare på deg selv, Jonas." } },
-      { h: 4 * 24, actor: "agent@solvva.ai", event_type: "payment_plan_active", payload: { reason: "Betalingsplan aktiv – automatikk pauset til del to forfaller", source: "agent" } },
+      { h: 5 * 24 - 21, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Så bra! Da er planen satt 👍 Første del her: chilimobil.no/betal · Vi minner deg vennlig om del to. Ta vare på deg selv, Jonas." } },
+      { h: 4 * 24, actor: "agent@audun.ai", event_type: "payment_plan_active", payload: { reason: "Betalingsplan aktiv – automatikk pauset til del to forfaller", source: "agent" } },
     ],
   },
 
@@ -184,14 +184,14 @@ const CASES: DummyCase[] = [
     age_hours: 60,
     stages: [],
     conversation: [
-      { h: 15 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: { note: "Opprettet fra ChiliMobil-faktura (Fri Tale)" } },
-      { h: 9 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Astrid", "CM-2026-04777", 412, "16.05.2026", "Fri Tale") } },
-      { h: 5 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Hei igjen Astrid 🙂 Regningen på 412 kr har gått litt over forfall. Si gjerne fra om noe er uklart, så hjelper vi deg. chilimobil.no/betal" } },
+      { h: 15 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: { note: "Opprettet fra ChiliMobil-faktura (Fri Tale)" } },
+      { h: 9 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Astrid", "CM-2026-04777", 412, "16.05.2026", "Fri Tale") } },
+      { h: 5 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Hei igjen Astrid 🙂 Regningen på 412 kr har gått litt over forfall. Si gjerne fra om noe er uklart, så hjelper vi deg. chilimobil.no/betal" } },
       { h: 5 * 24 - 2, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748114444", body: "Jeg er sykmeldt og har regninger overalt om dagen, jeg orker nesten ikke å åpne posten lenger." } },
-      { h: 5 * 24 - 2.1, actor: "rules-engine@solvva.ai", event_type: "needs_review_flagged", payload: { reason: "Sårbarhetssignal oppdaget (sykdom / økonomisk belastning) → automatikk pauset", signal: "vulnerability" } },
-      { h: 5 * 24 - 2.2, actor: "agent@solvva.ai", event_type: "case_paused", payload: { reason: "Sårbar-flagg utløst – all automatikk og gebyr-eskalering stoppet", source: "rules_engine" } },
-      { h: 5 * 24 - 2.5, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Takk for at du forteller, Astrid. Det viktigste nå er at du har det greit. Vi setter denne på vent og en av oss tar kontakt for å finne en løsning som passer for deg – helt uten ekstra kostnader. Du skal slippe å bekymre deg for dette." } },
-      { h: 4 * 24, actor: "creditor@chilimobil", event_type: "routed_to_agent", payload: { note: "Rutet til menneskelig saksbehandler hos Solvva for personlig oppfølging", source: "solvva_ops" } },
+      { h: 5 * 24 - 2.1, actor: "rules-engine@audun.ai", event_type: "needs_review_flagged", payload: { reason: "Sårbarhetssignal oppdaget (sykdom / økonomisk belastning) → automatikk pauset", signal: "vulnerability" } },
+      { h: 5 * 24 - 2.2, actor: "agent@audun.ai", event_type: "case_paused", payload: { reason: "Sårbar-flagg utløst – all automatikk og gebyr-eskalering stoppet", source: "rules_engine" } },
+      { h: 5 * 24 - 2.5, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Takk for at du forteller, Astrid. Det viktigste nå er at du har det greit. Vi setter denne på vent og en av oss tar kontakt for å finne en løsning som passer for deg – helt uten ekstra kostnader. Du skal slippe å bekymre deg for dette." } },
+      { h: 4 * 24, actor: "creditor@chilimobil", event_type: "routed_to_agent", payload: { note: "Rutet til menneskelig saksbehandler hos Audun for personlig oppfølging", source: "audun_ops" } },
     ],
   },
 
@@ -210,8 +210,8 @@ const CASES: DummyCase[] = [
     age_hours: 18,
     stages: [{ stage: "purring", daysAgo: 11, fee: PURREGEBYR_NOK }],
     conversation: [
-      { h: 11 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 18, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Ola", "CM-2026-04861", 329, "22.05.2026", "Fri Data") } },
+      { h: 11 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 18, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Ola", "CM-2026-04861", 329, "22.05.2026", "Fri Data") } },
       { h: 17.8, actor: "twilio-webhook", event_type: "sms_delivered", payload: {} },
       { h: 6, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748112277", body: "Skal betale i morgen, beklager forsinkelsen." } },
     ],
@@ -231,10 +231,10 @@ const CASES: DummyCase[] = [
     age_hours: 72,
     stages: [{ stage: "purring", daysAgo: 23, fee: PURREGEBYR_NOK }],
     conversation: [
-      { h: 23 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 72, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { to: "+4748114422", body: SMS_PURRING("Maja", "CM-2026-04790", 249, "11.05.2026", "Student") } },
-      { h: 71.9, actor: "agent@solvva.ai", event_type: "sms_failed", payload: { error_code: "30005", error_message: "Unknown destination handset", to: "+4748114422" } },
-      { h: 71, actor: "agent@solvva.ai", event_type: "case_escalated", payload: { reason: "Fikk ikke kontakt med kunde – krever gjennomgang." } },
+      { h: 23 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 72, actor: "agent@audun.ai", event_type: "sms_sent", payload: { to: "+4748114422", body: SMS_PURRING("Maja", "CM-2026-04790", 249, "11.05.2026", "Student") } },
+      { h: 71.9, actor: "agent@audun.ai", event_type: "sms_failed", payload: { error_code: "30005", error_message: "Unknown destination handset", to: "+4748114422" } },
+      { h: 71, actor: "agent@audun.ai", event_type: "case_escalated", payload: { reason: "Fikk ikke kontakt med kunde – krever gjennomgang." } },
     ],
   },
 
@@ -261,12 +261,12 @@ const CASES: DummyCase[] = [
       { stage: "inkassovarsel", daysAgo: 3, fee: INKASSOVARSEL_GEBYR_NOK },
     ],
     conversation: [
-      { h: 28 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 21 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Kristian", "CM-2026-04612", 549, "03.05.2026", "Fri Tale") } },
-      { h: 14 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Hei Kristian 🙂 Vi har ikke hørt fra deg om regningen på 549 kr. Alt ok? Du fikser den enkelt her: chilimobil.no/betal" } },
-      { h: 7 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Hei Kristian. Regningen på 549 kr er nå over forfall og vi har ikke hørt fra deg. Betal innen 3 dager for å unngå inkassovarsel og ekstra kostnader: chilimobil.no/betal" } },
-      { h: 3 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 3 * 24 - 1, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Inkassovarsel: Utestående kr 549 (faktura CM-2026-04612). Betales innen 14 dager (jf. inkassoloven). Betaler du nå, stopper prosessen og du unngår salær: chilimobil.no/betal. Ta kontakt hvis noe er uklart." } },
+      { h: 28 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 21 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Kristian", "CM-2026-04612", 549, "03.05.2026", "Fri Tale") } },
+      { h: 14 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Hei Kristian 🙂 Vi har ikke hørt fra deg om regningen på 549 kr. Alt ok? Du fikser den enkelt her: chilimobil.no/betal" } },
+      { h: 7 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Hei Kristian. Regningen på 549 kr er nå over forfall og vi har ikke hørt fra deg. Betal innen 3 dager for å unngå inkassovarsel og ekstra kostnader: chilimobil.no/betal" } },
+      { h: 3 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 3 * 24 - 1, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Inkassovarsel: Utestående kr 549 (faktura CM-2026-04612). Betales innen 14 dager (jf. inkassoloven). Betaler du nå, stopper prosessen og du unngår salær: chilimobil.no/betal. Ta kontakt hvis noe er uklart." } },
       { h: 3 * 24 - 1.2, actor: "twilio-webhook", event_type: "sms_delivered", payload: {} },
     ],
   },
@@ -287,10 +287,10 @@ const CASES: DummyCase[] = [
       { stage: "inkassovarsel", daysAgo: 22, fee: INKASSOVARSEL_GEBYR_NOK },
     ],
     conversation: [
-      { h: 38 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 36 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Marit", "CM-2026-04645", 749, "26.04.2026", "Familie") } },
-      { h: 22 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_INKASSO("Marit", "CM-2026-04645", 749) } },
+      { h: 38 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 36 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Marit", "CM-2026-04645", 749, "26.04.2026", "Familie") } },
+      { h: 22 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_INKASSO("Marit", "CM-2026-04645", 749) } },
       { h: 23.8, actor: "twilio-webhook", event_type: "sms_delivered", payload: {} },
     ],
   },
@@ -311,10 +311,10 @@ const CASES: DummyCase[] = [
       { stage: "inkassovarsel", daysAgo: 26, fee: INKASSOVARSEL_GEBYR_NOK },
     ],
     conversation: [
-      { h: 42 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 40 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Liv", "CM-2026-04588", 899, "22.04.2026", "Fri+") } },
-      { h: 26 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 30, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_INKASSO("Liv", "CM-2026-04588", 899) } },
+      { h: 42 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 40 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Liv", "CM-2026-04588", 899, "22.04.2026", "Fri+") } },
+      { h: 26 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 30, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_INKASSO("Liv", "CM-2026-04588", 899) } },
       { h: 29.8, actor: "twilio-webhook", event_type: "sms_delivered", payload: {} },
     ],
   },
@@ -334,10 +334,10 @@ const CASES: DummyCase[] = [
       { stage: "inkassovarsel", daysAgo: 29, fee: INKASSOVARSEL_GEBYR_NOK },
     ],
     conversation: [
-      { h: 45 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 43 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Trond", "CM-2026-04620", 449, "19.04.2026", "Fri Data") } },
-      { h: 29 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 48, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_INKASSO("Trond", "CM-2026-04620", 449) } },
+      { h: 45 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 43 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Trond", "CM-2026-04620", 449, "19.04.2026", "Fri Data") } },
+      { h: 29 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 48, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_INKASSO("Trond", "CM-2026-04620", 449) } },
       { h: 47.7, actor: "twilio-webhook", event_type: "sms_delivered", payload: {} },
       { h: 30, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748112266", body: "Hei, jeg er på reise denne uka. Kan jeg betale neste mandag?" } },
       { h: 24, actor: "creditor@chilimobil", event_type: "case_paused", payload: { reason: "Kunde i aktiv dialog – pauset til neste mandag", source: "creditor_portal" } },
@@ -359,11 +359,11 @@ const CASES: DummyCase[] = [
       { stage: "inkassovarsel", daysAgo: 31, fee: INKASSOVARSEL_GEBYR_NOK },
     ],
     conversation: [
-      { h: 47 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 45 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Sara", "CM-2026-04420", 549, "17.04.2026", "Fri Tale") } },
-      { h: 31 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 47 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 45 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Sara", "CM-2026-04420", 549, "17.04.2026", "Fri Tale") } },
+      { h: 31 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
       { h: 4 * 24, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748113344", body: "Dette beløpet stemmer ikke. Jeg sa opp abonnementet i mars." } },
-      { h: 4 * 24 - 1, actor: "agent@solvva.ai", event_type: "case_escalated", payload: { reason: "Innsigelse oppdaget – purringer stoppet i påvente av gjennomgang hos kreditor." } },
+      { h: 4 * 24 - 1, actor: "agent@audun.ai", event_type: "case_escalated", payload: { reason: "Innsigelse oppdaget – purringer stoppet i påvente av gjennomgang hos kreditor." } },
     ],
   },
 
@@ -389,14 +389,14 @@ const CASES: DummyCase[] = [
       { stage: "betalingsoppfordring", daysAgo: 41, fee: inkassosalaerNok(1297) },
     ],
     conversation: [
-      { h: 71 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 69 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Knut", "CM-2026-04412", 1297, "24.03.2026", "Familie") } },
-      { h: 55 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 55 * 24 - 1, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_INKASSO("Knut", "CM-2026-04412", 1297) } },
-      { h: 41 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
-      { h: 12, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_BETALING("Knut", "CM-2026-04412", 1297) } },
+      { h: 71 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 69 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Knut", "CM-2026-04412", 1297, "24.03.2026", "Familie") } },
+      { h: 55 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 55 * 24 - 1, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_INKASSO("Knut", "CM-2026-04412", 1297) } },
+      { h: 41 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 12, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_BETALING("Knut", "CM-2026-04412", 1297) } },
       { h: 6, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748113333", body: "Jeg bestrider dette, har allerede betalt." } },
-      { h: 5.9, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: "Hei Knut, takk for tilbakemelding. Vi finner ingen registrert betaling. Kan du sende kvittering til dokument@solvva.no? Mvh Solvva." } },
+      { h: 5.9, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: "Hei Knut, takk for tilbakemelding. Vi finner ingen registrert betaling. Kan du sende kvittering til dokument@audun.no? Mvh Audun." } },
     ],
   },
   {
@@ -416,11 +416,11 @@ const CASES: DummyCase[] = [
       { stage: "betalingsoppfordring", daysAgo: 44, fee: inkassosalaerNok(1798) },
     ],
     conversation: [
-      { h: 74 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 72 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Hanne", "CM-2026-04490", 1798, "21.03.2026", "Fri+") } },
-      { h: 58 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 44 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
-      { h: 30, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_BETALING("Hanne", "CM-2026-04490", 1798) } },
+      { h: 74 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 72 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Hanne", "CM-2026-04490", 1798, "21.03.2026", "Fri+") } },
+      { h: 58 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 44 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 30, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_BETALING("Hanne", "CM-2026-04490", 1798) } },
       { h: 29.8, actor: "twilio-webhook", event_type: "sms_delivered", payload: {} },
     ],
   },
@@ -441,11 +441,11 @@ const CASES: DummyCase[] = [
       { stage: "betalingsoppfordring", daysAgo: 61, fee: inkassosalaerNok(1098) },
     ],
     conversation: [
-      { h: 91 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 89 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Petter", "CM-2026-04388", 1098, "04.03.2026", "Fri Tale") } },
-      { h: 75 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 61 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
-      { h: 18, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_BETALING("Petter", "CM-2026-04388", 1098) } },
+      { h: 91 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 89 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Petter", "CM-2026-04388", 1098, "04.03.2026", "Fri Tale") } },
+      { h: 75 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 61 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 18, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_BETALING("Petter", "CM-2026-04388", 1098) } },
       { h: 17.8, actor: "twilio-webhook", event_type: "sms_delivered", payload: {} },
     ],
   },
@@ -467,10 +467,10 @@ const CASES: DummyCase[] = [
       { stage: "betalingsoppfordring", daysAgo: 55, fee: inkassosalaerNok(798) },
     ],
     conversation: [
-      { h: 85 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 83 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Erik", "CM-2026-04461", 798, "10.03.2026", "Fri Data") } },
-      { h: 69 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 55 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 85 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 83 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Erik", "CM-2026-04461", 798, "10.03.2026", "Fri Data") } },
+      { h: 69 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 55 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
       { h: 72, actor: "creditor@chilimobil", event_type: "case_paused", payload: { reason: "Kunde innvilget 30 dagers utsettelse – bekreftet skriftlig", source: "creditor_portal" } },
     ],
   },
@@ -492,10 +492,10 @@ const CASES: DummyCase[] = [
       { stage: "betalingsoppfordring", daysAgo: 51, fee: inkassosalaerNok(1298) },
     ],
     conversation: [
-      { h: 81 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 79 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Solveig", "CM-2026-04220", 1298, "14.03.2026", "Familie") } },
-      { h: 65 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 51 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 81 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 79 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Solveig", "CM-2026-04220", 1298, "14.03.2026", "Familie") } },
+      { h: 65 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 51 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
       { h: 12 * 24, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748113388", body: "Beklager — har betalt nå, sjekk konto." } },
       { h: 240, actor: "creditor@chilimobil", event_type: "case_closed", payload: { reason: "Betaling bekreftet av kreditor – sak løst", source: "creditor_portal" } },
     ],
@@ -522,12 +522,12 @@ const CASES: DummyCase[] = [
       { stage: "rettslig_inkasso", daysAgo: 45, fee: 0 },
     ],
     conversation: [
-      { h: 105 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 103 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Geir", "CM-2026-04212", 2396, "18.02.2026", "Fri+") } },
-      { h: 89 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 75 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
-      { h: 45 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
-      { h: 36, actor: "agent@solvva.ai", event_type: "pending_legal_approval", payload: { note: "Purreløp uttømt – avventer kreditors beslutning: forliksrådet vs. langtidsovervåkning." } },
+      { h: 105 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 103 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Geir", "CM-2026-04212", 2396, "18.02.2026", "Fri+") } },
+      { h: 89 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 75 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 45 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
+      { h: 36, actor: "agent@audun.ai", event_type: "pending_legal_approval", payload: { note: "Purreløp uttømt – avventer kreditors beslutning: forliksrådet vs. langtidsovervåkning." } },
     ],
   },
   {
@@ -548,13 +548,13 @@ const CASES: DummyCase[] = [
       { stage: "rettslig_inkasso", daysAgo: 61, fee: 0 },
     ],
     conversation: [
-      { h: 121 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 119 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Bjørn", "CM-2026-04261", 3290, "02.02.2026", "Familie") } },
-      { h: 105 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 91 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
-      { h: 61 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
+      { h: 121 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 119 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Bjørn", "CM-2026-04261", 3290, "02.02.2026", "Familie") } },
+      { h: 105 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 91 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 61 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
       { h: 5 * 24, actor: "twilio-inbound", event_type: "inbound_sms", payload: { from: "+4748113399", body: "Jeg har ikke penger nå." } },
-      { h: 18, actor: "agent@solvva.ai", event_type: "pending_legal_approval", payload: { note: "Kunde oppgir manglende betalingsevne – avventer kreditors beslutning om rettslig steg." } },
+      { h: 18, actor: "agent@audun.ai", event_type: "pending_legal_approval", payload: { note: "Kunde oppgir manglende betalingsevne – avventer kreditors beslutning om rettslig steg." } },
     ],
   },
   {
@@ -576,11 +576,11 @@ const CASES: DummyCase[] = [
       { stage: "rettslig_inkasso", daysAgo: 60, fee: FORLIKSRAD_GEBYR_NOK },
     ],
     conversation: [
-      { h: 121 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 119 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Nora", "CM-2026-04290", 1980, "02.02.2026", "Fri Tale") } },
-      { h: 105 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 91 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
-      { h: 60 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
+      { h: 121 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 119 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Nora", "CM-2026-04290", 1980, "02.02.2026", "Fri Tale") } },
+      { h: 105 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 91 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 60 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
       { h: 45 * 24, actor: "creditor@chilimobil", event_type: "sent_to_forliksradet", payload: { note: "Kreditor godkjente eskalering til forliksrådet", source: "creditor_portal" } },
       { h: 14 * 24, actor: "system", event_type: "forliksradet_judgment", payload: { note: "Forliksrådet ga kreditor medhold – dom mottatt." } },
       { h: 96, actor: "system", event_type: "sent_to_enforcement", payload: { note: "Sak overført til namsmannen for tvangsinnkreving." } },
@@ -604,11 +604,11 @@ const CASES: DummyCase[] = [
       { stage: "rettslig_inkasso", daysAgo: 98, fee: 0 },
     ],
     conversation: [
-      { h: 158 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 156 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Henrik", "CM-2026-04112", 1490, "27.12.2025", "Fri Data") } },
-      { h: 142 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 128 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
-      { h: 98 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
+      { h: 158 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 156 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Henrik", "CM-2026-04112", 1490, "27.12.2025", "Fri Data") } },
+      { h: 142 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 128 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 98 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
       { h: 480, actor: "creditor@chilimobil", event_type: "placed_under_monitoring", payload: { reason: "Kreditor valgte langtidsovervåkning fremfor forliksrådet", source: "creditor_portal" } },
     ],
   },
@@ -630,11 +630,11 @@ const CASES: DummyCase[] = [
       { stage: "rettslig_inkasso", daysAgo: 115, fee: 0 },
     ],
     conversation: [
-      { h: 175 * 24, actor: "ingest@solvva.ai", event_type: "case_ingested", payload: {} },
-      { h: 173 * 24, actor: "agent@solvva.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Joakim", "CM-2026-04085", 2890, "10.12.2025", "Fri+") } },
-      { h: 159 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
-      { h: 145 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
-      { h: 115 * 24, actor: "agent@solvva.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
+      { h: 175 * 24, actor: "ingest@audun.ai", event_type: "case_ingested", payload: {} },
+      { h: 173 * 24, actor: "agent@audun.ai", event_type: "sms_sent", payload: { body: SMS_PURRING("Joakim", "CM-2026-04085", 2890, "10.12.2025", "Fri+") } },
+      { h: 159 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "inkassovarsel" } },
+      { h: 145 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "betalingsoppfordring" } },
+      { h: 115 * 24, actor: "agent@audun.ai", event_type: "stage_advanced", payload: { to_stage: "rettslig_inkasso" } },
       { h: 600, actor: "creditor@chilimobil", event_type: "case_withdrawn", payload: { reason: "Kunde slått konkurs – trekker saken", source: "creditor_portal" } },
     ],
   },
@@ -877,8 +877,8 @@ export function demoCashMetrics(): DemoCashMetrics {
 }
 
 // ── Verdikjede-/billing-oversikt (overordnet landingsside) ──────────
-// Tallene for "Solvva eier hele løpet"-oversikten på /demo. I denne
-// demoen fremstiller vi Solvva som eier av HELE faktureringen selv
+// Tallene for "Audun eier hele løpet"-oversikten på /demo. I denne
+// demoen fremstiller vi Audun som eier av HELE faktureringen selv
 // (ikke via partner) — fra abonnement til innkrevd. En MVNO som
 // ChiliMobil kjører titusenvis av små abonnementsfakturaer per syklus;
 // kanal-miksen + autotrekk-andelen er den sterkeste cash-spaken
@@ -907,7 +907,7 @@ export interface DemoBillingOverview {
   dsoDays: number;
   /** Endring i DSO siste tre sykluser (negativ = forbedring). */
   dsoTrendDays: number;
-  /** Systemene Solvva plugger inn i hos ChiliMobil. */
+  /** Systemene Audun plugger inn i hos ChiliMobil. */
   integrations: DemoBillingIntegration[];
 }
 
@@ -976,7 +976,7 @@ export interface BillingFlowItem {
   detail: string;
 }
 
-// Mottak-steget: et konkret utdrag av fila/feeden Solvva mottar fra
+// Mottak-steget: et konkret utdrag av fila/feeden Audun mottar fra
 // ChiliMobil. Kolonnene speiler de tre tingene vi MÅ ha inn før vi kan
 // fakturere: beløp (hva), abonnement+status (hvem), AvtaleGiro+KID (hvordan).
 export interface BillingIntakeRow {
@@ -1035,9 +1035,9 @@ export interface DemoBillingRun {
   autotrekkCount: number;
   dsoDays: number;
   upstreamSteps: BillingFlowItem[]; // gjort av ChiliMobil før oss (nett→mediation→rating)
-  receivedItems: BillingFlowItem[]; // det Solvva mottar (steg 1 — Mottak)
+  receivedItems: BillingFlowItem[]; // det Audun mottar (steg 1 — Mottak)
   intakeRows: BillingIntakeRow[]; // konkret fil-/feed-utdrag i Mottak
-  sampleInvoice: BillingSampleInvoice; // fakturaen Solvva lager av Emmas rad
+  sampleInvoice: BillingSampleInvoice; // fakturaen Audun lager av Emmas rad
   industryLeakagePct: number; // bransjesnitt inntektslekkasje (TM Forum)
   paymentFunnel: PaymentFunnelStep[]; // sluttpanel — fra faktura til betalt
   resolvedBeforeInkassoPct: number; // betalt før inkasso (forfall + påminnelse)
@@ -1184,7 +1184,7 @@ export function demoBillingRun(): DemoBillingRun {
 
   const nb = (n: number): string => n.toLocaleString("nb-NO");
 
-  // Gjort av ChiliMobil FØR oss — i deres egne systemer. Solvva rører
+  // Gjort av ChiliMobil FØR oss — i deres egne systemer. Audun rører
   // verken nettet eller rating-motoren; vi tar over fra ferdig beløp.
   const upstreamSteps: BillingFlowItem[] = [
     { label: "Telia / nett", detail: "Logger forbruk (CDR-er)" },
@@ -1195,7 +1195,7 @@ export function demoBillingRun(): DemoBillingRun {
     },
   ];
 
-  // Det Solvva MOTTAR ved overlevering (steg 1 — Mottak). Fil via SFTP
+  // Det Audun MOTTAR ved overlevering (steg 1 — Mottak). Fil via SFTP
   // eller API. Vi synker ikke mediation/rating selv.
   const receivedItems: BillingFlowItem[] = [
     {
@@ -1212,7 +1212,7 @@ export function demoBillingRun(): DemoBillingRun {
     },
   ];
 
-  // Konkret utdrag av fila/feeden Solvva mottar. Siste rad (oppsagt)
+  // Konkret utdrag av fila/feeden Audun mottar. Siste rad (oppsagt)
   // faktureres ikke — binder sammen med avvikssjekken senere.
   const intakeRows: BillingIntakeRow[] = [
     { customer: "Emma Lie", plan: "Fri Data", status: "aktiv", baseAmount: 399, extraAmount: 50, extraLabel: "data", paymentMethod: "AvtaleGiro", kid: "1004230526", billed: true },
@@ -1221,7 +1221,7 @@ export function demoBillingRun(): DemoBillingRun {
     { customer: "Lars Holm", plan: "Fri Tale", status: "oppsagt", baseAmount: null, extraAmount: null, extraLabel: null, paymentMethod: null, kid: null, billed: false },
   ];
 
-  // Fakturaen Solvva lager av Emmas rad — hovedstol + overforbruk, så MVA.
+  // Fakturaen Audun lager av Emmas rad — hovedstol + overforbruk, så MVA.
   const invoiceLines: BillingInvoiceLine[] = [
     { label: "Månedsavgift Fri Data", amount: 399 },
     { label: "Data utover inkludert", amount: 50 },
@@ -1396,7 +1396,7 @@ function buildOriginalInvoice(c: DummyCase): LedgerInvoice {
       ? null
       : {
           provider: "vipps",
-          url: `https://betal.solvva.no/${c.invoice_reference.toLowerCase()}`,
+          url: `https://betal.audun.no/${c.invoice_reference.toLowerCase()}`,
           // Expires a week out from "now".
           expires_at: new Date(NOW + 7 * 24 * 3600 * 1000).toISOString(),
         },

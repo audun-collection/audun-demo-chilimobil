@@ -5,14 +5,14 @@
  *
  * One chat-first view that replaces the previous trio (Draft card +
  * Agent activity card + standalone Conversation panel). Per
- * peter@solvva.no's 2026-05-12 product feedback — "merging agent
+ * peter@audun.no's 2026-05-12 product feedback — "merging agent
  * activity and chat together into one feature?? could be super slick" —
  * everything the operator needs to see and act on for SMS-mediated
  * collection on a Claim now lives here:
  *
  *   - Inbound Debtor replies   → left-aligned bubbles labelled with the
  *                                Debtor's first name (e.g. "MAGNUS").
- *   - Sent outbound messages   → right-aligned Solvva-clay bubbles.
+ *   - Sent outbound messages   → right-aligned Audun-clay bubbles.
  *   - Pending operator-reviewable draft (drafts table, state=pending)
  *                              → right-aligned muted-clay bubble with
  *                                Approve / Edit / Reject buttons inline.
@@ -262,7 +262,7 @@ export function ConversationPanel({
 
   // No outer Card chrome — the thread IS the page. Page-level header +
   // metadata strip live in page.tsx; the thread renders as a flowing
-  // column of events / blocks underneath. Per peter@solvva.no's
+  // column of events / blocks underneath. Per peter@audun.no's
   // 2026-05-13 feedback that the previous design felt boilerplate
   // ("too many boxes").
   return (
@@ -397,8 +397,8 @@ export function ConversationPanel({
                 "Dette kravet er lukket. Samtaletråden er skrivebeskyttet.",
               )
             : tt(
-                "Read-only view — Solvva handles the follow-up; a case manager approves and steps in where needed.",
-                "Skrivebeskyttet visning — Solvva håndterer oppfølgingen, og en saksbehandler godkjenner og tar over der det trengs.",
+                "Read-only view — Audun handles the follow-up; a case manager approves and steps in where needed.",
+                "Skrivebeskyttet visning — Audun håndterer oppfølgingen, og en saksbehandler godkjenner og tar over der det trengs.",
               )}
         </p>
       ) : !closed ? (
@@ -502,8 +502,8 @@ function ConversationItemView({
   }
   // SMS events — pure text rows. No background, no border, no left
   // accent rule. Direction is encoded entirely in the header label
-  // ("SOLVVA → DEBTOR" vs "MAGNUS → SOLVVA"), not in colour, so the
-  // thread reads as a flat document. Per peter@solvva.no's 2026-05-13
+  // ("AUDUN → DEBTOR" vs "MAGNUS → AUDUN"), not in colour, so the
+  // thread reads as a flat document. Per peter@audun.no's 2026-05-13
   // feedback ("still too boxy in the chat, not sure why different
   // colors").
   if (item.kind === "outbound") {
@@ -514,7 +514,7 @@ function ConversationItemView({
             {item.source === "operator"
               ? tt("You → Debtor", "Du → Skyldner")
               : item.source === "agent"
-                ? tt("Solvva → Debtor", "Solvva → Skyldner")
+                ? tt("Audun → Debtor", "Audun → Skyldner")
                 : tt("System → Debtor", "System → Skyldner")}
           </span>
           <span className="font-mono text-[10.5px] text-ink-400">
@@ -532,7 +532,7 @@ function ConversationItemView({
     <div>
       <div className="mb-0.5 flex items-baseline gap-2">
         <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ink-600">
-          {debtorFirstName} → Solvva
+          {debtorFirstName} → Audun
         </span>
         <span className="font-mono text-[10.5px] text-ink-400">
           {tt("SMS received", "SMS mottatt")} &middot; {formatRelative(item.at)}
@@ -550,7 +550,7 @@ function ConversationItemView({
  * Shows the proposed reply body with a status label
  * ("pending operator approval" / "approved, awaiting send") and no
  * Approve / Edit / Reject / Send affordances. Creditors observe that
- * a draft is queued for their tenant's Solvva operator to action.
+ * a draft is queued for their tenant's Audun operator to action.
  */
 function DraftReadOnlyBubble({
   detail,
@@ -560,7 +560,7 @@ function DraftReadOnlyBubble({
   const state = detail.draft.state;
   const statusLabel =
     state === "pending"
-      ? "Awaiting Solvva approval"
+      ? "Awaiting Audun approval"
       : state === "approved"
         ? "Approved — awaiting send"
         : state === "sent"
@@ -1041,7 +1041,7 @@ function AgentSuggestionBubble({
       {/* Proposed reply — the agent's OUTPUT, not part of its reasoning.
           Rendered flat (no chevron, no disclosure) and outdented one
           notch so it sits at the analysis-block edge rather than under
-          the Rationale / Policy Engine sub-rows. Per peter@solvva.no's
+          the Rationale / Policy Engine sub-rows. Per peter@audun.no's
           2026-05-13 feedback: "the actual proposed reply doesn't need to
           be part of the collapses, that is the output of the agent
           reasoning". */}
@@ -1391,7 +1391,7 @@ function RuleCitationStrip({
 
       {/* Per-rule citation rows. Hidden by default to keep the strip
           compact — the operator expands the Policy Engine row to reveal
-          them. Per peter@solvva.no's 2026-05-13 feedback ("right now we
+          them. Per peter@audun.no's 2026-05-13 feedback ("right now we
           are showing too much information at default"). */}
       {policyOpen && (fired.length > 0 || blocked.length > 0) ? (
         <ul className="ml-5 mt-1.5 space-y-1 border-l border-ink-200 pl-3">

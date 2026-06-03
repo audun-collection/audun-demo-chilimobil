@@ -8,9 +8,9 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Solvva — Demo",
+  title: "Audun — Demo",
   description:
-    "Solvva creditor portal demo — portfolio, claims, debtors, and per-claim conversation timeline.",
+    "Audun creditor portal demo — portfolio, claims, debtors, and per-claim conversation timeline.",
   robots: { index: false, follow: false },
 };
 

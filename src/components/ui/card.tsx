@@ -39,7 +39,6 @@ export const CardTitle = forwardRef<
         "font-serif text-lg font-medium leading-tight tracking-tight text-ink-900",
         className,
       )}
-      style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
       {...rest}
     />
   );

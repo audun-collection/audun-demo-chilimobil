@@ -7,9 +7,9 @@
  * Clear split of responsibility:
  *  - ChiliMobil's own systems (Telia/nett → Mediation → Rating) produce
  *    the finished priced amount per customer. Shown as a static, greyed
- *    "done before us" band — Solvva never touches the network or the
+ *    "done before us" band — Audun never touches the network or the
  *    rating engine.
- *  - Solvva takes over from the finished amount: Mottak → Generer →
+ *  - Audun takes over from the finished amount: Mottak → Generer →
  *    Avvikssjekk → Godkjenning → Send → Distribusjon.
  *
  * Honest about AI: a human approves the flagged exceptions (the run
@@ -135,7 +135,6 @@ export default function FaktureringPage(): JSX.Element {
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
           <h1
             className="font-serif text-3xl font-light tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
           >
             Fakturakjøring
           </h1>
@@ -144,7 +143,7 @@ export default function FaktureringPage(): JSX.Element {
           </p>
         </div>
         <p className="max-w-2xl text-sm text-ink-600">
-          ChiliMobils systemer priser forbruket. Solvva tar over fra ferdig
+          ChiliMobils systemer priser forbruket. Audun tar over fra ferdig
           beløp: mottar, genererer, fanger avvik (menneske godkjenner), sender og
           distribuerer — i ett løp.
         </p>
@@ -169,7 +168,7 @@ export default function FaktureringPage(): JSX.Element {
         <StepGenerer
           run={run}
           onNext={() =>
-            runThen("Solvva genererer fakturautkast og kjører avvikssjekk …", 3)
+            runThen("Audun genererer fakturautkast og kjører avvikssjekk …", 3)
           }
         />
       ) : step === 3 ? (
@@ -208,7 +207,7 @@ function UpstreamBand({ run }: { run: Run }): JSX.Element {
   return (
     <div className="space-y-3">
       <p className="max-w-2xl text-[12.5px] text-ink-500">
-        Dette skjer i ChiliMobils egne systemer — Solvva rører verken nettet
+        Dette skjer i ChiliMobils egne systemer — Audun rører verken nettet
         eller rating-motoren.
       </p>
       <div className="rounded-lg border border-dashed border-ink-300 bg-ink-100/40 px-4 py-4">
@@ -244,7 +243,7 @@ function UpstreamBand({ run }: { run: Run }): JSX.Element {
         <ArrowRight className="mt-0.5 h-4 w-4 flex-none text-accent-700" />
         <p>
           <strong className="font-medium text-ink-900">
-            Solvva henter det ferdig-prisede beløpet per kunde
+            Audun henter det ferdig-prisede beløpet per kunde
           </strong>{" "}
           (via fil eller API) — og tar det derfra.
         </p>
@@ -326,7 +325,6 @@ function StepMottak({ run, onNext }: { run: Run; onNext: () => void }): JSX.Elem
           <FileText className="h-4 w-4 text-accent-700" />
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Mottak
           </h2>
@@ -432,7 +430,7 @@ function StepMottak({ run, onNext }: { run: Run; onNext: () => void }): JSX.Elem
             <div className="mb-2 flex items-center gap-2">
               <ArrowRight className="h-3.5 w-3.5 text-accent-700" />
               <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-accent-700">
-                Solvva lager fakturaen
+                Audun lager fakturaen
               </p>
             </div>
             <div className="rounded-md border border-ink-200 bg-white px-4 py-3.5">
@@ -468,7 +466,6 @@ function StepMottak({ run, onNext }: { run: Run; onNext: () => void }): JSX.Elem
                 </span>
                 <span
                   className="font-serif text-xl font-light tracking-tight text-ink-900"
-                  style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 80" }}
                 >
                   {kr2(inv.total)}
                 </span>
@@ -512,13 +509,12 @@ function StepGenerer({ run, onNext }: { run: Run; onNext: () => void }): JSX.Ele
           <ReceiptText className="h-4 w-4 text-accent-700" />
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Generer fakturaer
           </h2>
         </div>
         <p className="max-w-2xl text-[12.5px] text-ink-600">
-          Dette er det Solvva faktisk gjør — bygger fakturaene fra de mottatte
+          Dette er det Audun faktisk gjør — bygger fakturaene fra de mottatte
           beløpene.
         </p>
         <ul className="space-y-2.5">
@@ -578,13 +574,12 @@ function StepAvvik({ run, onNext }: { run: Run; onNext: () => void }): JSX.Eleme
           <Sparkles className="h-4 w-4 text-accent-700" />
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Avvikssjekk
           </h2>
         </div>
         <p className="max-w-2xl text-[12.5px] text-ink-600">
-          Tradisjonell kontroll sjekker bare et utvalg. Solvva sjekker hele
+          Tradisjonell kontroll sjekker bare et utvalg. Audun sjekker hele
           populasjonen — alle {num(run.reviewedDrafts)} utkast — mot hver kundes
           historiske, sesongjusterte normal.
         </p>
@@ -672,7 +667,6 @@ function StepGodkjenning({
           <div className="flex items-center gap-2">
             <h2
               className="font-serif text-lg font-medium tracking-tight text-ink-900"
-              style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
             >
               Godkjenning
             </h2>
@@ -784,7 +778,6 @@ function StepSend({ run, onSend }: { run: Run; onSend: () => void }): JSX.Elemen
         <div className="space-y-1">
           <p
             className="font-serif text-[40px] font-light leading-none tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
           >
             {num(run.sendCount)}
           </p>
@@ -835,7 +828,6 @@ function StepDistribusjon({
           <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
             <h2
               className="font-serif text-lg font-medium tracking-tight text-ink-900"
-              style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
             >
               Distribusjon per kanal
             </h2>
@@ -934,7 +926,6 @@ function BridgePanel({ run }: { run: Run }): JSX.Element {
           <p className="eyebrow">Hva skjer videre</p>
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Fra faktura til betalt
           </h2>
@@ -982,7 +973,6 @@ function BridgePanel({ run }: { run: Run }): JSX.Element {
         <div className="rounded-lg border border-accent-200 bg-white/60 px-4 py-4">
           <p
             className="font-serif text-[32px] font-light leading-none tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 48, 'SOFT' 80" }}
           >
             {run.resolvedBeforeInkassoPct} % løst før inkasso
           </p>

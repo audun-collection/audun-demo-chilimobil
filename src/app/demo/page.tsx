@@ -1,5 +1,5 @@
 /**
- * Demo — Oversikt (landing). The first thing the CFO sees: Solvva as
+ * Demo — Oversikt (landing). The first thing the CFO sees: Audun as
  * the owner of the *entire* value chain for ChiliMobil (telekom-MVNO),
  * from subscription to collected. The angle is "replace the bundled
  * Svea mess with one seamless, integrated run — built for telecom."
@@ -48,14 +48,13 @@ export default function DemoOverviewPage(): JSX.Element {
         <p className="eyebrow">Oversikt</p>
         <h1
           className="font-serif text-3xl font-light tracking-tight text-ink-900"
-          style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
         >
           Ett løp fra faktura til innkrevd.
         </h1>
         <p className="max-w-2xl text-sm text-ink-600">
           Slik ser det ut for{" "}
           <span className="font-medium text-ink-900">{CREDITOR_NAME}</span> i
-          Solvva: fakturering og innkreving samlet på ett sted, koblet på
+          Audun: fakturering og innkreving samlet på ett sted, koblet på
           systemene dere allerede bruker. Du følger hele løpet — fra faktura
           sendt til pengene er inne.
         </p>
@@ -161,9 +160,8 @@ function ValueChainPanel(): JSX.Element {
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
           <h2
             className="font-serif text-xl font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 40, 'SOFT' 60" }}
           >
-            Solvva eier hele løpet
+            Audun eier hele løpet
           </h2>
           <p className="font-mono text-[11.5px] text-ink-500">
             Fra faktura til innkrevd — i ett system
@@ -253,7 +251,6 @@ function IntegrationsPanel({
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Integrert i systemene deres
           </h2>
@@ -318,7 +315,6 @@ function ChannelMixPanel({
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
           <h2
             className="font-serif text-lg font-medium tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 36, 'SOFT' 60" }}
           >
             Betaling per kanal
           </h2>
@@ -330,7 +326,6 @@ function ChannelMixPanel({
         <div className="flex items-end gap-3">
           <p
             className="font-serif text-[44px] font-light leading-none tracking-tight text-ink-900"
-            style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
           >
             {autotrekkPct} %
           </p>
@@ -412,7 +407,6 @@ function HeadlineMetric({
         </div>
         <p
           className="font-serif text-[40px] font-light leading-none tracking-tight text-ink-900"
-          style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
         >
           {dso}{" "}
           <span className="font-sans text-base font-normal text-ink-500">

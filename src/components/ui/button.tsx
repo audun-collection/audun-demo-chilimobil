@@ -5,12 +5,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/cn";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium border border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-50 focus-visible:ring-accent-500 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium border border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-50 focus-visible:ring-accent-500 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         // Primary: navy on paper. Lightens a step on hover, deepens on
-        // press — Solvva palette collapses ink-900 and accent-500 to the
+        // press — Audun palette collapses ink-900 and accent-500 to the
         // same navy, so the hover ramp lives inside the ink scale.
         primary:
           "bg-ink-900 text-ink-50 hover:bg-ink-800 active:bg-accent-700",

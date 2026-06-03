@@ -3,7 +3,7 @@
 /**
  * Dev affordance: a floating phone-shaped panel pinned to the bottom-right
  * of /cases/:id that lets the Operator "be the Debtor" — see the SMS
- * thread from the Debtor's point of view (Solvva on the left, Debtor on
+ * thread from the Debtor's point of view (Audun on the left, Debtor on
  * the right, like every real phone messages app) and send replies that
  * fire the inbound trigger / Decision Agent pipeline.
  *
@@ -82,8 +82,8 @@ export function DebtorPhonePanel({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Build the debtor-POV chat bubbles from the agentic timeline.
-  // Outbound communication (Solvva → Debtor) becomes "them"; inbound
-  // (Debtor → Solvva) becomes "self" because the operator is roleplaying
+  // Outbound communication (Audun → Debtor) becomes "them"; inbound
+  // (Debtor → Audun) becomes "self" because the operator is roleplaying
   // the Debtor's phone.
   const bubbles = useMemo<PhoneBubble[]>(() => {
     const out: PhoneBubble[] = [];
@@ -231,7 +231,7 @@ export function DebtorPhonePanel({
             <p className="text-center font-mono text-[10.5px] text-ink-400">
               You ({debtorFirst}) have no messages yet.
               <br />
-              When Solvva sends a reminder it will appear here.
+              When Audun sends a reminder it will appear here.
             </p>
           ) : (
             bubbles.map((b, i) => <Bubble key={i} bubble={b} />)
@@ -330,7 +330,7 @@ function Bubble({ bubble }: { bubble: PhoneBubble }): JSX.Element {
       </div>
     );
   }
-  // Solvva → Debtor — left side, neutral
+  // Audun → Debtor — left side, neutral
   return (
     <div className="flex justify-start">
       <div className="max-w-[80%] rounded-2xl rounded-bl-md bg-white px-3 py-1.5 text-[13px] leading-snug text-ink-900 shadow-sm ring-1 ring-ink-200">

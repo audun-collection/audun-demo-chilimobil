@@ -51,8 +51,9 @@ const config: Config = {
         },
       },
       fontFamily: {
+        // getaudun.com type system, loaded via next/font (see layout.tsx).
         sans: [
-          "'Plus Jakarta Sans'",
+          "var(--font-inter)",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -61,13 +62,13 @@ const config: Config = {
           "sans-serif",
         ],
         serif: [
-          "'Fraunces'",
+          "var(--font-eb-garamond)",
           "ui-serif",
           "Georgia",
           "serif",
         ],
         mono: [
-          "'Geist Mono'",
+          "var(--font-jetbrains-mono)",
           "ui-monospace",
           "'SF Mono'",
           "Menlo",

@@ -17,7 +17,7 @@ export function Header(): JSX.Element {
           <Link href="/demo" className="flex items-center gap-2.5 text-ink-900">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/solvva-logo.svg" alt="" width={22} height={22} />
-            <span className="wordmark">Solvva</span>
+            <span className="wordmark">Audun</span>
           </Link>
           <nav className="flex items-center gap-0.5 text-sm">
             <NavLink href="/demo">Oversikt</NavLink>

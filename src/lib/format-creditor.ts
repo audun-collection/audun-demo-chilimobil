@@ -7,7 +7,7 @@ import type { CreditorOption } from "./api";
  * slug needs to become operator-readable prose ("Island Fitness"
  * rather than `island_fitness`).
  *
- * Per peter@solvva.no's 2026-05-13 feedback: "creditor slug is hard
+ * Per peter@audun.no's 2026-05-13 feedback: "creditor slug is hard
  * to interpret".
  */
 export function creditorDisplayName(

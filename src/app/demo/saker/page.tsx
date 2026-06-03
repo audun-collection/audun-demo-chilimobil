@@ -83,12 +83,11 @@ function Inner(): JSX.Element {
         <p className="eyebrow">Saker</p>
         <h1
           className="font-serif text-3xl font-light tracking-tight text-ink-900"
-          style={{ fontVariationSettings: "'opsz' 60, 'SOFT' 80" }}
         >
           Dine krav
         </h1>
         <p className="max-w-2xl text-sm text-ink-600">
-          Skrivebeskyttet visning av alle innsendte krav. Solvva lager
+          Skrivebeskyttet visning av alle innsendte krav. Audun lager
           utkast, sender og følger opp automatisk — du ser hvert steg
           etter hvert som det skjer.
         </p>
